@@ -1,0 +1,67 @@
+.content-insert{
+    margin-top: 100px;
+}
+
+.button-area {
+    margin-left: 2px;
+    margin-bottom: 20px;
+}
+
+.button-area ul li{
+    margin-right: 40px;
+    width: 120px;
+}
+
+.artist-details, .album-details, .track-details {
+    margin-top: 100px;
+}
+
+.track-details th {
+    font-size: 14px;
+}
+
+.track-details td {
+    font-size: 12px;
+}
+
+.url {
+	overflow: hidden;
+	max-width: 60px;
+	text-overflow: ellipsis;
+}
+
+.url-wide{
+	overflow: hidden;
+	max-width: 120px;
+	text-overflow: ellipsis;
+}
+
+.img {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-position: center center;
+}
+
+.track-img {
+    height: 50px;
+    width: 50px;
+}
+
+table th, table td {
+    text-align: center;
+}
+
+.track-player, .ringtone-player {
+    text-align: center;
+}
+
+.search-area span, .search-area select {
+    border: none;
+}
+
