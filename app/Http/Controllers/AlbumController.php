@@ -23,6 +23,7 @@ class AlbumController extends Controller
 
     public function store(Request $request)
     {
+		$root = 'http://' . $_SERVER['SERVER_NAME'] . ':89/moledcontrol';
         $this->validate($request, [
             'album_name' => 'required'
         ]);
@@ -43,7 +44,7 @@ class AlbumController extends Controller
 			
             $destinationPath = 'img/album';
             $file->move($destinationPath, $filename);
-            $uri = $destinationPath . '/' . $filename;
+            $uri = $root . '/' . $destinationPath . '/' . $filename;
 
             $album = new Album;
             $album->album_name = $request->input('album_name');
@@ -111,7 +112,7 @@ class AlbumController extends Controller
 
     public function update(Request $request)
     {
-
+		$root = 'http://' . $_SERVER['SERVER_NAME'] . ':89/moledcontrol';
         $album = Album::find($request->album_id);
         $album->album_name = $request->album_name;
         if ($request->hasFile('img_url')){
@@ -120,7 +121,7 @@ class AlbumController extends Controller
 			$filename = 'album_' . $album->album_id . '.' . $file->getClientOriginalExtension();
             $destinationPath = 'img/album';
             $file->move($destinationPath, $filename);
-            $uri = $destinationPath . '/' . $filename;
+            $uri = $root . '/' . $destinationPath . '/' . $filename;
 
             $album->img_url = $uri;
         }

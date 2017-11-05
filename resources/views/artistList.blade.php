@@ -11,7 +11,7 @@
             </div>
             <div id="row" class="search-area">
                 <div class="form-group">
-                    <input type="search" class="form-control"  placeholder="Search" id="artistSearch">
+                    <input type="search" class="form-control"  placeholder="Search by artist" id="artistSearch">
                 </div>
             </div>
         </div>

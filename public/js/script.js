@@ -88,5 +88,26 @@ $(document).ready(function () {
             }
         )
     });
+	
+	$('#category').change(function (event) {
+        var value = $(this).val();
+		//value = parseInt(value);
+        var placeholder;
+        switch (value) {
+            case '0':
+                placeholder = 'Search by artist';
+                break;
+            case '1':
+                placeholder = 'Search by album';
+                break;
+            case '2':
+                placeholder = 'Search by track';
+                break;
+			default: 
+				placeholder = 'Search';
+        }
+        $('input[type=search]').attr('placeholder', placeholder);
+
+    });
 
 });

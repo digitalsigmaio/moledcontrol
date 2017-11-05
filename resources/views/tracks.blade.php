@@ -18,7 +18,7 @@
                             <option value="2">Track</option>
                         </select>
                     </span>
-                    <input type="search" class="form-control"  placeholder="Search" id="trackSearch">
+                    <input type="search" class="form-control"  placeholder="Search by artist" id="trackSearch">
                 </div>
             </div>
         </div>

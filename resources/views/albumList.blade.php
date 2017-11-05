@@ -17,7 +17,7 @@
                             <option value="1">Album</option>
                         </select>
                     </span>
-                    <input type="search" class="form-control"  placeholder="Search" id="albumSearch">
+                    <input type="search" class="form-control"  placeholder="Search by artist" id="albumSearch">
                 </div>
             </div>
         </div>

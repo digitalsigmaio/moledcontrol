@@ -23,6 +23,7 @@ class TrackController extends Controller
     public function store(Request $request)
 
     {
+		$root = 'http://' . $_SERVER['SERVER_NAME'] . ':89/moledcontrol';
         $this->validate($request, [
             'track_name' => 'required'
         ]);
@@ -44,12 +45,17 @@ class TrackController extends Controller
 			
             $destinationPath = 'img/track';
             $image->move($destinationPath, $filename);
-            $image_uri = $destinationPath . '/' . $filename;
+            $image_uri = $root . '/' . $destinationPath . '/' . $filename;
             if  ($request->hasFile('track_url')) {
                 $audio = $request->file('track_url');
+				
+				$last_record = Track::orderBy('id', 'desc')->first();
+				$new_id = $last_record->id + 1;
+				$filename = 'track_' . $new_id . '.' . $audio->getClientOriginalExtension();
+				
                 $destinationPath = 'media/track';
-                $audio->move($destinationPath, $audio->getClientOriginalName());
-                $audio_uri = $destinationPath . '/' . $audio->getClientOriginalName();
+                $audio->move($destinationPath, $filename);
+                $audio_uri = $root . '/' . $destinationPath . '/' . $filename;
 
                 $track = new Track;
                 $track->artist_id = $request->input('artist_id');
@@ -62,13 +68,16 @@ class TrackController extends Controller
                 $track->img_url = $image_uri;
                 if ($request->hasFile('ringtone_url')){
                     $ringtone = $request->file('ringtone_url');
+					
+					$last_record = Track::orderBy('id', 'desc')->first();
+					$new_id = $last_record->id + 1;
+					$filename = 'ringtone_' . $new_id . '.' . $ringtone->getClientOriginalExtension();
+					
                     $destinationPath = 'media/ringtone';
-                    $ringtone->move($destinationPath, $ringtone->getClientOriginalName());
-                    $ringtone_uri = $destinationPath . '/' . $ringtone->getClientOriginalName();
+                    $ringtone->move($destinationPath, $filename);
+                    $ringtone_uri = $root . '/' . $destinationPath . '/' . $filename;
 
                     $track->ringtone_url = $ringtone_uri;
-                } else {
-                    return redirect()->back()->withErrors('Something wrong with ringtone');
                 }
                 $artist = Artist::find($request->input('artist_id'));
                 $track->artist_name = $artist->artist_name;
@@ -145,7 +154,7 @@ class TrackController extends Controller
 
     public function update(Request $request)
     {
-
+		$root = 'http://' . $_SERVER['SERVER_NAME'] . ':89/moledcontrol';
         $track = Track::find($request->id);
         $track->track_name = $request->track_name;
         $track->vod = $request->vod;
@@ -158,23 +167,29 @@ class TrackController extends Controller
 			
             $destinationPath = 'img/track';
             $file->move($destinationPath, $filename);
-            $uri = $destinationPath . '/' . $filename;
+            $uri = $root . '/' . $destinationPath . '/' . $filename;
 
             $track->img_url = $uri;
         }
         if ($request->hasFile('track_url')){
             $audio = $request->file('track_url');
+			
+			$filename = 'track_' . $track->id . '.' . $audio->getClientOriginalExtension();
+			
             $destinationPath = 'media/track';
-            $audio->move($destinationPath, $audio->getClientOriginalName());
-            $audio_uri = $destinationPath . '/' . $audio->getClientOriginalName();
+            $audio->move($destinationPath, $filename);
+            $audio_uri = $root . '/' . $destinationPath . '/' . $filename;
 
             $track->track_url = $audio_uri;
         }
         if ($request->hasFile('ringtone_url')){
             $ringtone = $request->file('ringtone_url');
+			
+			$filename = 'ringtone_' . $track->id . '.' . $ringtone->getClientOriginalExtension();
+			
             $destinationPath = 'media/ringtone';
-            $ringtone->move($destinationPath, $ringtone->getClientOriginalName());
-            $ringtone_uri = $destinationPath . '/' . $ringtone->getClientOriginalName();
+            $ringtone->move($destinationPath, $filename);
+            $ringtone_uri = $root . '/' . $destinationPath . '/' . $filename;
 
             $track->ringtone_url = $ringtone_uri;
         }
