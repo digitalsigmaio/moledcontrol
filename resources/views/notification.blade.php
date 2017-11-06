@@ -2,9 +2,17 @@
 
 @section('content')
 	<div class="row">
-        <form action='PushNotificationServiceBrowser.php' method='POST'>
-			 link url <textarea name='link_url'></textarea><br/><br/><br/>
-            Submit<input type="submit" name="btn_upload_notify" value="Upload" ><br/>
-        </form>
+        <div class="col-md-6 col-md-offset-3 content-insert">
+            <form action='notification' method='post'>
+                <div class="form-group">
+                    <label for="link_url">Link</label>
+                    <input type="text" class="form-control" id="link_url" name="link_url" placeholder="Put your link">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Send</button>
+                </div>
+            </form>
+        </div>
+
     </div> 
 @endsection
