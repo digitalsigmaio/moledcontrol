@@ -13,6 +13,8 @@ class NotificationController extends Controller
 	{
 		return view('notification');
 	}
+
+
 	public function notify(Request $request)
 	{
 		$this->validate($request, [
