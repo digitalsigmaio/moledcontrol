@@ -49,6 +49,9 @@
                 <li>
                     <a href="{{ route('tracks') }}">Tracks</a>
                 </li>
+                <li>
+                    <a href="{{ route('notification') }}">Notifications</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('logout')}}">Logout</a></li>
