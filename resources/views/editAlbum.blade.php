@@ -11,7 +11,7 @@
                 <input type="hidden" name="album_id" value="{{ $album->album_id }}">
                 <div class="form-group">
                     <label for="album_name">Album Name</label>
-                    <input class="form-control" type="text" id="album_name" name="album_name" value="{{ $album->album_name }}" required>
+                    <input class="form-control" type="text" id="album_name" name="album_name" value="{{ $album->album_name }}">
                 </div>
                 <div class="form-group">
                     <label for="artist_id"></label>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="img_url">Image Upload</label>
-                    <input class="form-control" type="file" id="img_url" name="img_url" required>
+                    <input class="form-control" type="file" id="img_url" name="img_url">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Edit Album</button>

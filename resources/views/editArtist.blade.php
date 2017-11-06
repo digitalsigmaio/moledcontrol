@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label for="img_url">Image Upload</label>
-                    <input class="form-control" type="file" id="img_url" name="img_url" required>
+                    <input class="form-control" type="file" id="img_url" name="img_url">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Edit Artist</button>

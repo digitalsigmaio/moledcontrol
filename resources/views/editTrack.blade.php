@@ -30,7 +30,7 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $track->id }}"> <div class="form-group">
                     <label for="track_name">Track Name</label>
-                    <input class="form-control" type="text" id="track_name" name="track_name" value="{{ $track->track_name }}" required>
+                    <input class="form-control" type="text" id="track_name" name="track_name" value="{{ $track->track_name }}">
                 </div>
                 <div class="form-group">
                     <label for="artist_id">Artist</label>

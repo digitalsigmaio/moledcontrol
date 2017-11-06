@@ -91,9 +91,7 @@ class TrackController extends Controller
                 return redirect()->back()->withErrors('Something wrong with track');
             }
 
-        } else {
-            return redirect()->back()->withErrors('Something wrong with image');
-        }
+        } 
     }
 
     public function trackList()

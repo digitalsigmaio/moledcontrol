@@ -65,3 +65,7 @@ Route::get('logout', 'UserController@logout')->name('logout');
 Route::get('/test', function () {
     return view('testRoot');
 });
+
+/* Notification routes */
+Route::get('/notification', 'NotificationController@index')->name('notification');
+Route::post('/notification', 'NotificationController@notify');
