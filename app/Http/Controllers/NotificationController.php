@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
 	public function index()
 	{
 		return view('notification');
@@ -22,14 +26,27 @@ class NotificationController extends Controller
 		]);
 		
 		$notification = $request->link_url;
+		$message = [
+			'url' => $notification,
+			'role' => 'link'
+		];
+		
 		$tokens_data = Token::all();
 		$tokens = [];
 		foreach($tokens_data as $token){
 			$tokens[] = $token->tokens;
 		}
-		if(Notification::push($tokens, $notification)){
-			session()->flash('message', 'Notification has been sent');
-			return redirect()->back();
+		
+		/*
+		$tokens = ['c1Y3asOooUk:APA91bE2qgOJs0MnQXvxuexPn1Ezm_8nHAlwFqnSimHXMF2c4QJAG5pvOpC64rTTO8gteIE8kmdy6JVHVjky6A-1ncVShhI1ayTIYY3wSqC7OoWYhlJLBOcQYq2CXwtrE8QkZCYeiIn3'];
+		$notify = Notification::push($tokens, $message);
+		dd($notify);
+		*/
+		$tokens_chunk = array_chunk($tokens, 500);
+		foreach($tokens_chunk as $group){
+			$notify = Notification::push($group, $message);		
 		}
+		
+		dd($notify);
 	}
 }
