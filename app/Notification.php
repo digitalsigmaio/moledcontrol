@@ -9,6 +9,10 @@ class Notification
 {
     const API_KEY = 'Authorization:key = AIzaSyA64wlqh9py1DvVOj6N3Rd52uN1CfJtJos';
 	const URL = "https://fcm.googleapis.com/fcm/send";
+
+	const YOUTUBE_ICON = '';
+	const MOLEDAPP_ICON = '';
+
 	protected static $headers = [ self::API_KEY, 'Content-Type: application/json' ];
 	
 	public static function push($tokens, $message)
