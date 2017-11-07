@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{{ asset('css/cosmo.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset ('css/custom.min.css') }}">
-    <link rel="stylesheet" href="{{ asset ('css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <script>
 
