@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Token;
 use App\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NotificationController extends Controller
 {
@@ -43,10 +44,14 @@ class NotificationController extends Controller
 		dd($notify);
 		*/
 		$tokens_chunk = array_chunk($tokens, 500);
+		$response = [];
 		foreach($tokens_chunk as $group){
-			$notify = Notification::push($group, $message);		
+			$response[] = Notification::push($group, $message);		
 		}
 		
-		dd($notify);
+		Log::useDailyFiles(storage_path().'/logs/notification.log');
+		Log::info(['Response'=>$response]);
+		session()->flash('message', 'Notification has been sent check notification.log on your logs folder for more information.');
+		return redirect()->back();
 	}
 }
