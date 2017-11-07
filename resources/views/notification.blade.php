@@ -36,13 +36,5 @@
 				</div>
             </div>
 		@endif
-		@if(session()->get('log'))
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 alert alert-dismissible alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong>{{ session()->get('message') }}</strong>.
-				</div>
-			</div>
-		@endif
     </div> 
 @endsection
