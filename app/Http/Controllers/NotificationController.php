@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Token;
 use App\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 
 class NotificationController extends Controller
@@ -38,16 +39,22 @@ class NotificationController extends Controller
 			$tokens[] = $token->tokens;
 		}
 		
-		/*
-		$tokens = ['c1Y3asOooUk:APA91bE2qgOJs0MnQXvxuexPn1Ezm_8nHAlwFqnSimHXMF2c4QJAG5pvOpC64rTTO8gteIE8kmdy6JVHVjky6A-1ncVShhI1ayTIYY3wSqC7OoWYhlJLBOcQYq2CXwtrE8QkZCYeiIn3'];
-		$notify = Notification::push($tokens, $message);
-		dd($notify);
-		*/
+
 		$tokens_chunk = array_chunk($tokens, 500);
+		$response = [];
 		foreach($tokens_chunk as $group){
-			$notify = Notification::push($group, $message);		
+		    $ticket = Notification::push($group, $message);
+		    $ticket_array = json_decode($ticket);
+		    $response_array = array_splice($ticket_array, 0, 3);
+
+			$response[] = $response_array;
 		}
 
-		dd($notify);
+		
+		Log::useDailyFiles(storage_path().'/logs/notification.log');
+		Log::info(['Response'=>$response]);
+		$response_total = Notification::response_total($response);
+		session()->flash('message', "Notification has been sent check notification.log on your logs folder for more information.<br> {$response_total}");
+		return redirect()->back();
 	}
 }

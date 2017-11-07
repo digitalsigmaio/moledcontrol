@@ -34,4 +34,14 @@ class Notification
 			return $result;
 		}	
 	}
+
+	public static function response_total($response){
+	    $success = 0;
+	    $failure = 0;
+	    foreach ($response as $item){
+	        $success += $item['success'];
+	        $failure += $item['failure'];
+        }
+        return 'Total success: ' . $success . '<br>Total failure: ' . $failure;
+    }
 }
