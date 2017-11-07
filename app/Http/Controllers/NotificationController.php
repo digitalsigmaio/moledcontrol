@@ -6,6 +6,7 @@ use App\Token;
 use App\Notification;
 use Illuminate\Http\Request;
 
+
 class NotificationController extends Controller
 {
     public function __construct()
@@ -46,7 +47,7 @@ class NotificationController extends Controller
 		foreach($tokens_chunk as $group){
 			$notify = Notification::push($group, $message);		
 		}
-		
+
 		dd($notify);
 	}
 }
