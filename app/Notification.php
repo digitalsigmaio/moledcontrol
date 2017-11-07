@@ -45,6 +45,6 @@ class Notification
         }
 		$device_num = $success + $failure;
 		$request_num = count($response);
-        return 'Total devices: ' $device_num . ', Total request: ' $request_num . ', Total success: ' . $success . ', Total failure: ' . $failure;
+        return 'Total devices: ' . $device_num . ', Total request: ' . $request_num . ', Total success: ' . $success . ', Total failure: ' . $failure;
     }
 }
