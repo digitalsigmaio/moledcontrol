@@ -110,4 +110,22 @@ $(document).ready(function () {
 
     });
 
+	$('#icon').change(function (event) {
+        var value = $(this).val();
+        value = parseInt(value);
+        switch (value){
+            case 0:
+                $('#custom_icon').hide();
+                break;
+            case 1:
+                $('#custom_icon').hide();
+                break;
+            case 2:
+                $('#custom_icon').show();
+                break;
+            default:
+                return false;
+        }
+    });
+
 });

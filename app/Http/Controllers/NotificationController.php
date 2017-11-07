@@ -15,23 +15,64 @@ class NotificationController extends Controller
         $this->middleware('auth');
     }
 	
-	public function index()
+	public function linkForm()
 	{
-		return view('notification');
+		return view('notificationLink');
 	}
 
+    public function notifyLink(Request $request)
+    {
+        $this->validate($request, [
+            'link_url' => 'required',
+        ]);
 
-	public function notify(Request $request)
+        $notification = $request->link_url;
+        $message = [
+            'url' => $notification,
+            'role' => 'link'
+        ];
+        self::notify($message);
+    }
+
+    public function boxForm()
+    {
+        return view('notificationBox');
+    }
+
+    public function notifyBox(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'body'  => 'required',
+            'link'  => 'required'
+        ]);
+
+        switch($request->icon){
+            case 0:
+                $img = Notification::MOLEDAPP_ICON;
+                break;
+            case 1:
+                $img = Notification::YOUTUBE_ICON;
+                break;
+            case 2:
+                $img = $request->custom_icon;
+                break;
+            default:
+                return false;
+        }
+        $message = [
+            'title'     => $request->title,
+            'message'   => $request->body,
+            'img'       => $img,
+            'url'       => $request->link,
+            'role'      => '1'
+        ];
+        self::notify($message);
+    }
+
+	public static function notify($message)
 	{
-		$this->validate($request, [
-			'link_url' => 'required',
-		]);
-		
-		$notification = $request->link_url;
-		$message = [
-			'url' => $notification,
-			'role' => 'link'
-		];
+
 		
 		$tokens_data = Token::all();
 		$tokens = [];

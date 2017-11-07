@@ -67,5 +67,8 @@ Route::get('/test', function () {
 });
 
 /* Notification routes */
-Route::get('/notification', 'NotificationController@index')->name('notification');
-Route::post('/notification', 'NotificationController@notify');
+Route::get('/notificationLink', 'NotificationController@linkForm')->name('link');
+Route::post('/notificationLink', 'NotificationController@notifyLink');
+
+Route::get('/notificationBox', 'NotificationController@boxForm')->name('box');
+Route::post('/notificationBox', 'NotificationController@notifyBox');
