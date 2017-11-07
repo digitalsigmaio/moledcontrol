@@ -41,12 +41,14 @@ class NotificationController extends Controller
 		
 
 		$tokens_chunk = array_chunk($tokens, 500);
+		
 		$response = [];
 		foreach($tokens_chunk as $group){
 		    $ticket = Notification::push($group, $message);
 		    $ticket_array = json_decode($ticket);
-		    $response_array = array_splice($ticket_array, 0, 3);
-
+			$response_array = [];
+		    $response_array['success']= $ticket_array->success;
+			$response_array['failure']= $ticket_array->failure;
 			$response[] = $response_array;
 		}
 
@@ -54,7 +56,8 @@ class NotificationController extends Controller
 		Log::useDailyFiles(storage_path().'/logs/notification.log');
 		Log::info(['Response'=>$response]);
 		$response_total = Notification::response_total($response);
-		session()->flash('message', "Notification has been sent check notification.log on your logs folder for more information.<br> {$response_total}");
+		session()->flash('message', 'Notification has been sent check notification.log on your logs folder for more information');
+		session()->flash('log', $response_total);
 		return redirect()->back();
 	}
 }
