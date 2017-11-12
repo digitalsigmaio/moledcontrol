@@ -29,8 +29,8 @@ Route::get('/albums/{artist_id}', 'AlbumController@apiAlbumByArtist'); //retriev
 
 Route::get('/tracks', 'TrackController@apiTracks');  //retrieve all tracks
 
-Route::get('/tracksByArtist/{artist_id}', 'TrackController@apiTracksByArtist'); //retrieve tracks by artist id
+Route::get('/tracks/artist/{artist_id}', 'TrackController@apiTracksByArtist'); //retrieve tracks by artist id
 
-Route::get('/tracksByAlbum/{album_id}', 'TrackController@apiTracksByAlbum'); //retrieve tracks by album id
+Route::get('/tracks/album/{album_id}', 'TrackController@apiTracksByAlbum'); //retrieve tracks by album id
 
 Route::post('/tracksSearch', 'TrackController@apiTracksSearch'); //search tracks by track name
