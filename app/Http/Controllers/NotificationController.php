@@ -32,6 +32,8 @@ class NotificationController extends Controller
             'role' => 'link'
         ];
         self::notify($message);
+		
+		return redirect()->back();
     }
 
     public function boxForm()
@@ -68,6 +70,8 @@ class NotificationController extends Controller
             'role'      => '1'
         ];
         self::notify($message);
+		
+		return redirect()->back();
     }
 
 	public static function notify($message)
@@ -92,13 +96,23 @@ class NotificationController extends Controller
 			$response_array['failure']= $ticket_array->failure;
 			$response[] = $response_array;
 		}
-
 		
+		/* Test Token */
+		/*
+		$group = ['crkrdLsBix4:APA91bFaULH5mZCP4oSjdqfiJJha39j5drRrpboH-xwQVEJSfPTilKhzlb_afL_JkqGXdM9VdRx_uxhXekWXSzdyUCncpR3PmQe3c7eT07sLHgK8kdTv9Jdu5IOFIOTaJZvChUXFrnu0'];
+		$ticket = Notification::push($group, $message);
+		$ticket_array = json_decode($ticket);
+		$response_array = [];
+		$response_array['success']= $ticket_array->success;
+		$response_array['failure']= $ticket_array->failure;
+		$response[] = $response_array;
+		*/
+			
 		Log::useDailyFiles(storage_path().'/logs/notification.log');
 		Log::info(['Response'=>$response]);
 		$response_total = Notification::response_total($response);
 		session()->flash('message', 'Notification has been sent check notification.log on your logs folder for more information');
 		session()->flash('log', $response_total);
-		return redirect()->back();
+		
 	}
 }

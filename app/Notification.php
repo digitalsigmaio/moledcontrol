@@ -10,8 +10,8 @@ class Notification
     const API_KEY = 'Authorization:key = AIzaSyA64wlqh9py1DvVOj6N3Rd52uN1CfJtJos';
 	const URL = "https://fcm.googleapis.com/fcm/send";
 
-	const YOUTUBE_ICON = '';
-	const MOLEDAPP_ICON = '';
+	const YOUTUBE_ICON = 'http://gms-sms.com:89/moledcontrol/img/youtubeLogo.png';
+	const MOLEDAPP_ICON = 'http://gms-sms.com:89/moledcontrol/img/moledappLogo.png';
 
 	protected static $headers = [ self::API_KEY, 'Content-Type: application/json' ];
 	
