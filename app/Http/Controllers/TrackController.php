@@ -221,6 +221,6 @@ class TrackController extends Controller
     {
         $search = $request->track_name;
 
-        return Track::where('artist_name', 'like', "%$search%")->get();
+        return Track::where('track_name', 'like', "%$search%")->get();
     }
 }
