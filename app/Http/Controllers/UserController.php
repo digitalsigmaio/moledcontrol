@@ -81,4 +81,29 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
+    public function test(){
+        $headers = [
+            'Accept: application/json',
+            'Content-type: application/json'
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost/moledcontrol/public/api/artist/1');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $result = curl_exec($ch);
+        $array = json_decode($result);
+        curl_close($ch);
+        if (is_array($array)){
+            foreach ($array as $item){
+                echo $item->artist_name . '<br>';
+            }
+        } else {
+            echo $array->artist_name;
+        }
+
+    }
 }

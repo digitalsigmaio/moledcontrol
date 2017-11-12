@@ -99,6 +99,7 @@ class NotificationController extends Controller
 		$response_total = Notification::response_total($response);
 		session()->flash('message', 'Notification has been sent check notification.log on your logs folder for more information');
 		session()->flash('log', $response_total);
+		
 		return redirect()->back();
 	}
 }

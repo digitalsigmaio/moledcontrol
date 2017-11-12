@@ -12,7 +12,7 @@ class TrackController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['apiTracks', 'apiTracksByArtist', 'apiTracksByAlbum', 'apiTracksSearch']]);
     }
 
     public function index()
@@ -198,5 +198,29 @@ class TrackController extends Controller
 
         session()->flash('message', 'Track has been updated');
         return redirect()->back();
+    }
+
+    /* Api methods */
+
+    public function apiTracks()
+    {
+        return Track::all();
+    }
+
+    public function apiTracksByArtist($artist_id)
+    {
+        return Track::where('artist_id', $artist_id)->get();
+    }
+
+    public function apiTracksByAlbum($album_id)
+    {
+        return Track::where('album_id', $album_id)->get();
+    }
+
+    public function apiTracksSearch(Request $request)
+    {
+        $search = $request->track_name;
+
+        return Track::where('artist_name', 'like', "%$search%")->get();
     }
 }
