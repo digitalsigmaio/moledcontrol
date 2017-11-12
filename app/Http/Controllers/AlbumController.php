@@ -13,7 +13,7 @@ class AlbumController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['apiAlbumByArtist']]);
     }
 
     public function index()
@@ -130,5 +130,12 @@ class AlbumController extends Controller
 
         session()->flash('message', 'Album has been updated');
         return redirect()->back();
+    }
+
+    /* Api methods */
+
+    public function apiAlbumByArtist($artist_id)
+    {
+        return Album::where('artist_id', $artist_id)->get();
     }
 }

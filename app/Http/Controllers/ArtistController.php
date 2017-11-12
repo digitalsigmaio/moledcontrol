@@ -10,7 +10,7 @@ class ArtistController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['apiArtists', 'apiArtist']]);
     }
 
     public function index()
@@ -125,5 +125,18 @@ class ArtistController extends Controller
         $albums = $artist->albums;
         return view('artistAlbumsList', compact('albums'));
     }
+
+    /* Api methods */
+
+    public function apiArtists()
+    {
+        return Artist::all();
+    }
+
+    public function apiArtist(Artist $artist)
+    {
+        return $artist;
+    }
+
 }
 

@@ -114,5 +114,4 @@ class NotificationController extends Controller
 		session()->flash('message', 'Notification has been sent check notification.log on your logs folder for more information');
 		session()->flash('log', $response_total);
 		
-	}
 }

@@ -62,9 +62,9 @@ Route::post('register', 'UserController@store')->name('signup');
 
 Route::get('logout', 'UserController@logout')->name('logout');
 
-Route::get('/test', function () {
+/*Route::get('/test', function () {
     return view('testRoot');
-});
+});*/
 
 /* Notification routes */
 Route::get('/notificationLink', 'NotificationController@linkForm')->name('link');
@@ -72,3 +72,6 @@ Route::post('/notificationLink', 'NotificationController@notifyLink');
 
 Route::get('/notificationBox', 'NotificationController@boxForm')->name('box');
 Route::post('/notificationBox', 'NotificationController@notifyBox');
+
+/* Testing */
+Route::get('/test', 'UserController@test');
